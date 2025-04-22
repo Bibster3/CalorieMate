@@ -31,3 +31,18 @@ h1 {
   line-height: 1.1;
 }
 
+/* Container for all “slides” */
+.slider {
+  display: flex;
+  overflow-x: auto;            /* enable horizontal scroll */ 
+  scroll-snap-type: x mandatory;/* lock scroll to each child */ 
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Each slide = full viewport */
+.slide {
+  flex: 0 0 100vw;             /* 100% of viewport width */ 
+  height: 100vh;               /* full viewport height */ 
+  scroll-snap-align: start;    /* snap here */ 
+  position: relative;          /* for positioning arrows */ 
+}
