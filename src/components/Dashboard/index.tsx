@@ -58,7 +58,7 @@ const Dashboard: React.FC = () => {
 
   const totalCalories = getTotalCalories(tableRows);
 
-  if (!mealLogs || !activityLogs || !personalInfo) {
+  if (!personalInfo) {
     return (
       <Layout>
         <div data-testid="home">Please go to "My Info" and fill it in to start.</div>
