@@ -1,0 +1,16 @@
+ {
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "strict": true,
+      "jsx": "preserve",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "allowImportingTsExtensions": true,
+    "noEmit": true,
+    },
+    "include": ["src",  "src/declarations.d.ts"],
+    "exclude": ["node_modules", "dist"]
+  }
