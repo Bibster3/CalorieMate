@@ -1,0 +1,4 @@
+dist/assets/*.jpg
+dist/assets/*.png
+dist/assets/*.svg
+dist/assets/*.map
