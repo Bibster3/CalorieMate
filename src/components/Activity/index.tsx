@@ -36,6 +36,7 @@ const Activity: React.FC = () => {
 
   const handleStartTimer = () => {
     let seconds = 0;
+    
     const intervalId = setInterval(() => {
       seconds++;
       setSecondsElapsed(seconds);
