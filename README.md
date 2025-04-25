@@ -53,7 +53,7 @@ bash
 Copy
 Edit
 # Clone the repo
-git clone https://github.com/Bibster3/CalorieMate.git
+git clone https://github.com/Bibster3/CalorieMate
 cd CalorieMate
 
 # Install dependencies
