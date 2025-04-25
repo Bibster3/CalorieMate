@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 
@@ -9,8 +9,8 @@ const root = createRoot(rootElement as HTMLElement);
 
 root.render(
   <React.StrictMode>
-+    <HashRouter>
++    <BrowserRouter basename="/CalorieMate/">
         <App />
-+    </HashRouter>
++    </BrowserRouter>
   </React.StrictMode>
 );
