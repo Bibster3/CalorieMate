@@ -6,7 +6,7 @@ export const Arrow: React.FC<{ onClick: () => void }> = ({ onClick }) => (
     aria-label="Scroll to next section"
     className="
       absolute
-      right-4
+      right-10
       top-1/2
       transform -translate-y-1/2
       text-[4rem]
