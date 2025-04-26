@@ -86,6 +86,8 @@ const PersonalInfoForm = forwardRef<HTMLDivElement>((props, ref) => {
     } as PersonalInfo;
 
     await savePersonalInfo(personalInfo);
+    window.dispatchEvent(new Event("personalInfoUpdated"));
+
   };
 
   const enableSave = (): boolean => {

@@ -13,24 +13,34 @@ const Dashboard: React.FC = () => {
   const [activityLogs, setActivityLogs] = useState<ActivityLog[]>([]);
   const [mealLogs, setMealLogs] = useState<MealLog[]>([]);
   const [tableRows, setTableRows] = useState<TableRow[]>([]);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+
+  const refreshData = async () => {
+    const personalInfo = await getPersonalInfo();
+    setPersonalInfo(personalInfo);
+  
+    const activityLogs = await getActivityLogs();
+    setActivityLogs(activityLogs);
+  
+    const mealLogs = await getMealLogs();
+    setMealLogs(mealLogs);
+  };
+  
+  useEffect(() => {
+    refreshData();
+  }, [refreshKey])
 
   useEffect(() => {
-    const fetchAllData = async () => {
-      const personalInfo = await getPersonalInfo();
-      setPersonalInfo(personalInfo);
-
-      const activityLogs = await getActivityLogs();
-      setActivityLogs(activityLogs);
-
-      const mealLogs = await getMealLogs();
-      setMealLogs(mealLogs);
+    const handlePersonalInfoUpdated = () => {
+      setRefreshKey(prev => prev + 1);
     };
-
-    fetchAllData().then(() => {
-      // console.table(personalInfo);
-      // console.table(activityLogs);
-      // console.table(mealLogs);
-    });
+  
+    window.addEventListener("personalInfoUpdated", handlePersonalInfoUpdated);
+  
+    return () => {
+      window.removeEventListener("personalInfoUpdated", handlePersonalInfoUpdated);
+    };
   }, []);
 
   const handleClearDatabase = async (e: React.MouseEvent<HTMLButtonElement>) => {
