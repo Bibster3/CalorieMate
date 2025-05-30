@@ -71,7 +71,7 @@ const Dashboard: React.FC = () => {
   if (!personalInfo) {
     return (
       <Layout>
-        <div data-testid="home">Please go to "My Info" and fill it in to start.</div>
+        <div>Please go to "My Info" and fill it in to start.</div>
       </Layout>
     );
   }

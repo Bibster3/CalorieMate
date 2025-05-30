@@ -1,14 +1,8 @@
-import { Link } from "react-router-dom";
-import { Routes } from "./menuItems";
+import React from "react";
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="justify-between flex flex-col min-h-screen">
-      
       <div className="pl-4 py-4 flex-grow flex items-center justify-center">
         {children}
       </div>

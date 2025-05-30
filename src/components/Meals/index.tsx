@@ -56,9 +56,7 @@ const Meals: React.FC = () => {
         {mealLogs.length > 0 && <DisplayMealLogs mealLogs={mealLogs} />}
 
         <div
-          className="bg-white shadow-md rounded-xl border border-gray-200 p-8"
-          data-testid="meals"
-        >
+          className="bg-white shadow-md rounded-xl border border-gray-200 p-8">
           <h1 className="text-2xl font-bold mb-6">Add Meal</h1>
           <form className="space-y-6">
             <div>
@@ -71,7 +69,6 @@ const Meals: React.FC = () => {
                 value={mealName}
                 onChange={handleMealNameChange}
                 className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                data-testid="meal-name"
               />
             </div>
 
@@ -85,7 +82,6 @@ const Meals: React.FC = () => {
                 value={calories}
                 onChange={handleCaloriesChange}
                 className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                data-testid="calories"
               />
             </div>
 
@@ -106,7 +102,6 @@ const Meals: React.FC = () => {
                     ? "bg-blue-200 cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-700"
                 } text-white font-semibold py-2 px-4 rounded`}
-                data-testid="save-meal"
               >
                 Save
               </button>
@@ -120,7 +115,7 @@ const Meals: React.FC = () => {
 
 const DisplayMealLogs = ({ mealLogs }: { mealLogs: MealLog[] }) => {
   return (
-    <div className="bg-yellow-50 p-14 rounded-md" data-testid="meal-logs-table">
+    <div className="bg-yellow-50 p-14 rounded-md">
       <div className="text-2xl font-bold mb-4">Meal Logs</div>
       <div>
         <table className="w-full border-collapse border border-gray-300">

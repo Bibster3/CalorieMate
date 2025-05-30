@@ -102,7 +102,7 @@ const Activity: React.FC = () => {
           <DisplayActivityLogs activityLogs={activityLogs} />
         )}
 
-        <div className="bg-white shadow-md p-8 rounded-xl border border-gray-200" data-testid="activity">
+        <div className="bg-white shadow-md p-8 rounded-xl border border-gray-200" >
           <h1 className="text-2xl font-bold mb-6">Add Activity</h1>
           <form className="space-y-6">
             <div>
@@ -131,7 +131,6 @@ const Activity: React.FC = () => {
                 className="border border-gray-300 rounded-md px-4 py-2 w-full"
                 value={time}
                 onChange={handleTimeChange}
-                data-testid="activity-time-min"
               />
             </div>
 
@@ -182,7 +181,6 @@ const Activity: React.FC = () => {
                     : "bg-blue-600 hover:bg-blue-700"
                 } text-white font-semibold py-2 px-4 rounded`}
                 onClick={handleSave}
-                data-testid="save-activity"
               >
                 Save
               </button>
@@ -196,7 +194,7 @@ const Activity: React.FC = () => {
 
 const DisplayActivityLogs = ({ activityLogs }: { activityLogs: ActivityLog[] }) => {
   return (
-    <div className="bg-yellow-50 shadow-md border border-yellow-200 p-8 rounded-xl" data-testid="activity-log-table">
+    <div className="bg-yellow-50 shadow-md border border-yellow-200 p-8 rounded-xl">
       <div className="text-2xl font-bold mb-4">Activity Logs</div>
       <div className="overflow-x-auto">
         <table className="w-full table-auto border-collapse">
