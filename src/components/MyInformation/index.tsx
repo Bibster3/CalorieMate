@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getPersonalInfo, savePersonalInfo
 } from "../../shared/db/personalInfo";
@@ -8,7 +8,7 @@ import Layout from "../Layout";
 
 
 
-const PersonalInfoForm = forwardRef<HTMLDivElement>((props, ref) => {
+const PersonalInfoForm: React.FC = () => {
   const [height, setHeight] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
   const [age, setAge] = useState<number>(0);
@@ -46,24 +46,12 @@ const PersonalInfoForm = forwardRef<HTMLDivElement>((props, ref) => {
     setAge(Number(event.target.value));
   };
 
-  const genderHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setGender(event.target.value as Gender);
-  };
-
   const activityLevelHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setActivityLevel(event.target.value as keyof typeof ActivityLevel);
   };
 
-  const cancelHandler = () => {
-      setHeight(0);
-  setWeight(0);
-  setAge(0);
-  setGender("female");
-  setActivityLevel("lightExercise"); // Optional: reset to default
-  setDailyCalorieRequirement(undefined);
-  };
 
   const saveHandler = async () => {
     const dailyCalorieRequirement = calorieCalculator({
@@ -221,7 +209,6 @@ const PersonalInfoForm = forwardRef<HTMLDivElement>((props, ref) => {
     </div>
   </Layout>
   );
-});
-
+};
 
 export default PersonalInfoForm;

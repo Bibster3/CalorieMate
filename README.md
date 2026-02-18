@@ -1,107 +1,51 @@
-📋 Table of Contents
-🤖 Introduction
+# CalorieMate
 
-⚙️ Tech Stack
+CalorieMate is a React + TypeScript web app for tracking meals and activities, then comparing net calories against a daily calorie target calculated from personal information.
 
-🔋 Features
+## Features
 
-🤸 Quick Start
+- Personal profile form with daily calorie requirement calculation.
+- Meal logging with local persistence.
+- Activity logging with estimated calorie burn.
+- Dashboard view combining meal/activity logs and showing daily balance.
+- Data persistence using IndexedDB.
 
-🕸️ Configuration & Snippets
+## Tech Stack
 
-🔗 Links
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- idb (IndexedDB wrapper)
 
-🤖 Introduction
-CalorieMate guides users through a horizontal “slides” flow—starting with personal info, then meal & activity logging, ending on a dashboard summarizing net calories versus daily requirements. Built with React, Vite, and Tailwind CSS, it persists data locally via IndexedDB.
+## Getting Started
 
-⚙️ Tech Stack
-Vite – Fast build tool
+### Prerequisites
 
-React – Component‐based UI
+- Node.js 18+
+- npm
 
-Tailwind CSS – Utility‐first styling
+### Install and run
 
-IndexedDB (via idb) – Local data storage
-
-Recharts – Charting in dashboard
-
-Lucide‐React – Icons
-
-🔋 Features
-Horizontal Scroll Snap: Full‐screen slides for each section
-
-Animated Arrows: Guide users to next slide
-
-Form Persistence: Stores personal info and logs locally
-
-Meal & Activity Logs: Add, list, and clear entries
-
-Dynamic Dashboard: Shows consumed, burned, net, and required calories
-
-Responsive Design: Mobile and desktop support
-
-🤸 Quick Start
-Prerequisites
-Node.js ≥ 16
-
-npm 
-
-Git
-
-Local Setup
-bash
-Copy
-Edit
-# Clone the repo
-git clone https://github.com/Bibster3/CalorieMate
-cd CalorieMate
-
-# Install dependencies
+```bash
 npm install
-
-# Start development server
 npm run dev
-Open http://localhost:5173 in your browser to view.
+```
 
-🕸️ Configuration & Snippets
-<details> <summary><code>vite.config.js</code></summary>
-js
-Copy
-Edit
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+App runs at `http://localhost:5173`.
 
-export default defineConfig({
-  base: '/CalorieMate/',    // adjust if hosting under a subpath
-  plugins: [react()],
-});
-</details> <details> <summary><code>main.tsx</code></summary>
-tsx
-Copy
-Edit
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
-import App from './App';
-import './index.css';
+## Scripts
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </React.StrictMode>
-);
-</details> <details> <summary><code>tailwind.config.js</code></summary>
-js
-Copy
-Edit
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
-  theme: { extend: {} },
-  plugins: [],
-};
-</details>
-🔗 Links
-Repository: https://github.com/Bibster3/CalorieMate
+- `npm run dev` — start local development server
+- `npm run lint` — run ESLint
+- `npm run typecheck` — run TypeScript type checking
+- `npm run build` — create production build
+- `npm run preview` — preview production build
+
+## Deployment
+
+This project is configured for GitHub Pages under `/CalorieMate/`.
+
+```bash
+npm run deploy
+```
