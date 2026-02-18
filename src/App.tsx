@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Navbar from "./components/Layout/Navbar";
+import Navbar, { SectionKey } from "./components/Layout/Navbar";
 import HeroCarousel from "./components/Layout/HeroCarousel";
 import PersonalInfoForm from "./components/MyInformation";
 import Meals from "./components/Meals";
@@ -16,14 +16,14 @@ export default function App() {
     dashboard: useRef<HTMLElement>(null),
   };
 
-  const scrollTo = (key: keyof typeof refs) =>
+  const scrollTo = (key: SectionKey) =>
     refs[key].current?.scrollIntoView({ behavior: "smooth", inline: "start" });
 
   return (
     <>
       <Navbar onNavigate={scrollTo} />
 
-      <div className="flex overflow-x-auto snap-x snap-mandatory h-screen">
+      <div className="flex overflow-x-hidden snap-x snap-mandatory h-screen">
         <section ref={refs.hero} className="snap-start flex-shrink-0 w-screen h-screen relative">
           <HeroCarousel onGetStarted={() => scrollTo("info")} />
         </section>
