@@ -15,7 +15,8 @@ const Meals: React.FC = () => {
       if (meals.length > 0) {
         setMealLogs(meals);
       }
-    });  }, []);
+    });
+  }, []);
 
   const handleMealNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMealName(event.target.value);
@@ -55,8 +56,7 @@ const Meals: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-8">
         {mealLogs.length > 0 && <DisplayMealLogs mealLogs={mealLogs} />}
 
-        <div
-          className="bg-white shadow-md rounded-xl border border-gray-200 p-8">
+        <div className="bg-white shadow-md rounded-xl border border-gray-200 p-8">
           <h1 className="text-2xl font-bold mb-6">Add Meal</h1>
           <form className="space-y-6">
             <div>
@@ -133,8 +133,8 @@ const DisplayMealLogs = ({ mealLogs }: { mealLogs: MealLog[] }) => {
             </tr>
           </thead>
           <tbody>
-            {mealLogs.map((mealLog, idx) => (
-              <tr key={idx}>
+            {mealLogs.map((mealLog) => (
+              <tr key={`${mealLog.date.toISOString()}-${mealLog.meal}-${mealLog.calories}`}>
                 <td className="border-b border-gray-300 py-2 px-4">
                   {mealLog.meal}
                 </td>

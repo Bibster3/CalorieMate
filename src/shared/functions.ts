@@ -63,8 +63,6 @@ export const estimatedCalorieBurnCalculator = (
   weightKg: number,
   activityTimeInMin: number
 ): number => {
-  console.log(activity, weightKg, activityTimeInMin);
-
     let caloriesPerMinutePerKg = 0;
 
   // Task 3.1

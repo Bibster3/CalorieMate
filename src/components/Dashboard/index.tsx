@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Layout from "../Layout";
 import { ActivityLog, MealLog, PersonalInfo } from "../../shared/types";
 import { getPersonalInfo } from "../../shared/db/personalInfo";
@@ -54,17 +53,6 @@ const Dashboard: React.FC = () => {
     const tableRows: TableRow[] = getTableRows(mealLogs, activityLogs);
     setTableRows(tableRows);
   }, [mealLogs, activityLogs]);
-
-   // ← Compute derived values here, before return:
-  const caloriesConsumed = tableRows
-    .filter(r => r.entryType === 'meal')
-    .reduce((sum, r) => sum + r.calories, 0);
-
-  const caloriesBurned = tableRows
-    .filter(r => r.entryType === 'activity')
-    .reduce((sum, r) => sum + r.calories, 0);
-
-  const netCalories = caloriesConsumed - caloriesBurned;
 
   const totalCalories = getTotalCalories(tableRows);
 

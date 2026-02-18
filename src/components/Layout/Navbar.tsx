@@ -1,20 +1,28 @@
 import React from "react";
 
-const Navbar = ({ onNavigate }: { onNavigate: (section: string) => void }) => (
-  <nav className="fixed top-0 left-0 right-0 bg-white shadow z-50 flex justify-center space-x-6 py-3">
-    {[
-      ["Home", "hero"],
-      ["My Info", "info"],
-      ["Meals", "meals"],
-      ["Activity", "activity"],
-      ["Dashboard", "dashboard"],
-    ].map(([label, key]) => (
+const navItems = [
+  { label: "Home", section: "hero" },
+  { label: "My Info", section: "info" },
+  { label: "Meals", section: "meals" },
+  { label: "Activity", section: "activity" },
+  { label: "Dashboard", section: "dashboard" },
+] as const;
+
+export type SectionKey = (typeof navItems)[number]["section"];
+
+type NavbarProps = {
+  onNavigate: (section: SectionKey) => void;
+};
+
+const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => (
+  <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center space-x-6 bg-white py-3 shadow">
+    {navItems.map((item) => (
       <button
-        key={key}
-        onClick={() => onNavigate(key)}
-        className="text-sm font-medium hover:text-blue-600 transition"
+        key={item.section}
+        onClick={() => onNavigate(item.section)}
+        className="text-sm font-medium transition hover:text-blue-600"
       >
-        {label}
+        {item.label}
       </button>
     ))}
   </nav>
