@@ -43,7 +43,7 @@ export default function App() {
           <Arrow onClick={() => scrollTo("dashboard")} />
         </section>
 
-        <section ref={refs.dashboard} className="snap-start flex-shrink-0 w-screen h-screen relative">
+        <section ref={refs.dashboard} className="snap-start flex-shrink-0 w-screen  h-screen relative">
           <Dashboard />
         </section>
       </div>
