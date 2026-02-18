@@ -29,7 +29,8 @@ export const getDatabase = async () => {
 };
 
 export const clearDatabase = async () => {
-  await db.clear("settings");
-  await db.clear("meals");
-  await db.clear("activities");
-}
+  const database = await getDatabase();
+  await database.clear("settings");
+  await database.clear("meals");
+  await database.clear("activities");
+};
