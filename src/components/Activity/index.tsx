@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getActivityLogs, saveActivityLog } from "../../shared/db/activity";
 import { getPersonalInfo } from "../../shared/db/personalInfo";
-import {
-  getActivity,
-  estimatedCalorieBurnCalculator,
-} from "../../shared/functions";
+import { getActivity, estimatedCalorieBurnCalculator } from "../../shared/functions";
 import { ActivityLog, ActivityType } from "../../shared/types";
 import Layout from "../Layout";
 import { Play, Square } from "lucide-react";

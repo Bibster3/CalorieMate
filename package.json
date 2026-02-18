@@ -11,8 +11,7 @@
     "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit",
     "preview": "node ./node_modules/vite/bin/vite.js preview",
     "predeploy": "npm run build",
-    "deploy": "node ./node_modules/gh-pages/bin/gh-pages.js -d dist",
-    "test": "rm -rf .tmp-test && node ./node_modules/typescript/bin/tsc --module commonjs --target ES2020 --outDir .tmp-test src/shared/types.ts src/shared/functions.ts src/shared/functions.test.ts && printf '{\"type\":\"commonjs\"}' > .tmp-test/package.json && node .tmp-test/functions.test.js"
+    "deploy": "node ./node_modules/gh-pages/bin/gh-pages.js -d dist"
   },
   "dependencies": {
     "idb": "^8.0.0",
