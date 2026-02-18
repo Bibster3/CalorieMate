@@ -23,7 +23,7 @@ export default function App() {
     <>
       <Navbar onNavigate={scrollTo} />
 
-      <div className="flex overflow-x-auto snap-x snap-mandatory h-screen">
+      <div className="flex overflow-x-hidden snap-x snap-mandatory h-screen">
         <section ref={refs.hero} className="snap-start flex-shrink-0 w-screen h-screen relative">
           <HeroCarousel onGetStarted={() => scrollTo("info")} />
         </section>

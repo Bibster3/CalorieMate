@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => (
         onClick={() => onNavigate(key as SectionKey)}
         className="text-sm font-medium hover:text-blue-600 transition"
       >
-        {label}
+        {item.label}
       </button>
     ))}
   </nav>
