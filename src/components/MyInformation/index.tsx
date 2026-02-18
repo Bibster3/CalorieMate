@@ -91,7 +91,7 @@ const PersonalInfoForm: React.FC = () => {
             <input
               type="number"
               id="height"
-              value={height || ''}
+              value={height ?? ''}
               onChange={heightHandler}
               className="border border-gray-300 rounded-md px-4 py-2 w-full"
             />
@@ -104,7 +104,7 @@ const PersonalInfoForm: React.FC = () => {
             <input
               type="number"
               id="weight"
-              value={weight || ''}
+              value={weight ?? ''}
               onChange={weightHandler}
               className="border border-gray-300 rounded-md px-4 py-2 w-full"
             />
@@ -117,7 +117,7 @@ const PersonalInfoForm: React.FC = () => {
             <input
               type="number"
               id="age"
-              value={age || ''}
+              value={age ?? ''}
               onChange={ageHandler}
               className="border border-gray-300 rounded-md px-4 py-2 w-full"
             />
