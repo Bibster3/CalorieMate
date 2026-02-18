@@ -221,7 +221,10 @@ const DisplayActivityLogs = ({ activityLogs }: { activityLogs: ActivityLog[] }) 
           </thead>
           <tbody>
             {activityLogs.map((log, idx) => (
-              <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-yellow-50"}>
+              <tr
+                key={`${log.date.toISOString()}-${log.activity}-${log.calories}`}
+                className={idx % 2 === 0 ? "bg-white" : "bg-yellow-50"}
+              >
                 <td className="px-4 py-2 border-b border-yellow-200">{log.activity}</td>
                 <td className="px-4 py-2 border-b border-yellow-200 text-red-600">{log.calories}</td>
                 <td className="px-4 py-2 border-b border-yellow-200 text-gray-600">{log.date.toLocaleString()}</td>
