@@ -1,107 +1,79 @@
-📋 Table of Contents
-🤖 Introduction
+# CalorieMate
 
-⚙️ Tech Stack
+CalorieMate is a React + TypeScript web app for tracking meals and activities, then comparing net calories against a daily calorie target calculated from personal information.
 
-🔋 Features
+## Demo
 
-🤸 Quick Start
+![CalorieMate hero screen](src/assets/bg1.jpg)
 
-🕸️ Configuration & Snippets
+> Tip: replace this static hero screenshot with a short GIF walkthrough (My Info → Meals → Activity → Dashboard) for strongest hiring impact.
 
-🔗 Links
+## Features
 
-🤖 Introduction
-CalorieMate guides users through a horizontal “slides” flow—starting with personal info, then meal & activity logging, ending on a dashboard summarizing net calories versus daily requirements. Built with React, Vite, and Tailwind CSS, it persists data locally via IndexedDB.
+- Personal profile form with daily calorie requirement calculation.
+- Meal logging with local persistence.
+- Activity logging with estimated calorie burn.
+- Dashboard view combining meal/activity logs and showing daily balance.
+- Data persistence using IndexedDB.
 
-⚙️ Tech Stack
-Vite – Fast build tool
+## Architecture Overview
 
-React – Component‐based UI
+CalorieMate uses a small feature-oriented structure:
 
-Tailwind CSS – Utility‐first styling
+- `src/components/*` contains UI screens and shared layout elements.
+- `src/shared/db/*` wraps IndexedDB access through `idb`.
+- `src/shared/functions.ts` holds pure business logic for calorie math.
+- `src/shared/types.ts` centralizes app data types.
 
-IndexedDB (via idb) – Local data storage
+The app flow is intentionally simple:
 
-Recharts – Charting in dashboard
+1. User profile is stored in the `settings` store.
+2. Meals and activities are stored in dedicated object stores.
+3. Dashboard reads all three data sources and computes balances in the UI layer.
 
-Lucide‐React – Icons
+## Tradeoffs & Design Decisions
 
-🔋 Features
-Horizontal Scroll Snap: Full‐screen slides for each section
+- **IndexedDB over backend API**: chosen for offline-first behavior and zero backend hosting cost, at the cost of data being device-local.
+- **Single-page horizontal flow**: improves onboarding simplicity, but makes deep-linking to specific sections less direct.
+- **Minimal dependency footprint**: helps maintainability and setup speed, though advanced charting/analytics features are intentionally limited.
 
-Animated Arrows: Guide users to next slide
+## Tech Stack
 
-Form Persistence: Stores personal info and logs locally
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- idb (IndexedDB wrapper)
 
-Meal & Activity Logs: Add, list, and clear entries
+## Getting Started
 
-Dynamic Dashboard: Shows consumed, burned, net, and required calories
+### Prerequisites
 
-Responsive Design: Mobile and desktop support
+- Node.js 18+
+- npm
 
-🤸 Quick Start
-Prerequisites
-Node.js ≥ 16
+### Install and run
 
-npm 
-
-Git
-
-Local Setup
-bash
-Copy
-Edit
-# Clone the repo
-git clone https://github.com/Bibster3/CalorieMate
-cd CalorieMate
-
-# Install dependencies
+```bash
 npm install
-
-# Start development server
 npm run dev
-Open http://localhost:5173 in your browser to view.
+```
 
-🕸️ Configuration & Snippets
-<details> <summary><code>vite.config.js</code></summary>
-js
-Copy
-Edit
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+App runs at `http://localhost:5173`.
 
-export default defineConfig({
-  base: '/CalorieMate/',    // adjust if hosting under a subpath
-  plugins: [react()],
-});
-</details> <details> <summary><code>main.tsx</code></summary>
-tsx
-Copy
-Edit
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
-import App from './App';
-import './index.css';
+## Scripts
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </React.StrictMode>
-);
-</details> <details> <summary><code>tailwind.config.js</code></summary>
-js
-Copy
-Edit
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
-  theme: { extend: {} },
-  plugins: [],
-};
-</details>
-🔗 Links
-Repository: https://github.com/Bibster3/CalorieMate
+- `npm run dev` — start local development server
+- `npm run lint` — run ESLint
+- `npm run typecheck` — run TypeScript type checking
+- `npm run test` — run automated unit tests for shared calorie/activity logic
+- `npm run build` — create production build
+- `npm run preview` — preview production build
+
+## Deployment
+
+This project is configured for GitHub Pages under `/CalorieMate/`.
+
+```bash
+npm run deploy
+```

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { getActivityLogs, saveActivityLog } from "../../shared/db/activity";
 import { getPersonalInfo } from "../../shared/db/personalInfo";
 import {
-  getActivity, estimatedCalorieBurnCalculator 
+  getActivity,
+  estimatedCalorieBurnCalculator,
 } from "../../shared/functions";
-import { ActivityLog, ActivityType, PersonalInfo } from "../../shared/types";
+import { ActivityLog, ActivityType } from "../../shared/types";
 import Layout from "../Layout";
-import { Play, Square } from "lucide-react"
-
+import { Play, Square } from "lucide-react";
 
 const Activity: React.FC = () => {
   const [activityType, setActivityType] = useState("Running");
@@ -24,6 +24,14 @@ const Activity: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (timer !== undefined) {
+        clearInterval(timer);
+      }
+    };
+  }, [timer]);
+
   const handleActivityTypeChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -35,24 +43,34 @@ const Activity: React.FC = () => {
   };
 
   const handleStartTimer = () => {
+    if (timer !== undefined) {
+      clearInterval(timer);
+    }
+
     let seconds = 0;
-    
-    const intervalId = setInterval(() => {
-      seconds++;
+    const intervalId = window.setInterval(() => {
+      seconds += 1;
       setSecondsElapsed(seconds);
     }, 1000);
-    setTimer(intervalId as unknown as number);
-    // console.log(intervalId, "is set");
+
+    setTimer(intervalId);
   };
 
   const handleStopTimer = () => {
     setTime(secondsElapsed ? secondsElapsed / 60 : undefined);
+
+    if (timer !== undefined) {
+      clearInterval(timer);
+    }
+
     setTimer(undefined);
-    // console.log(timer, "is cleared");
-    clearInterval(timer as number);
   };
 
   const resetForm = () => {
+    if (timer !== undefined) {
+      clearInterval(timer);
+    }
+
     setTime(0);
     setSecondsElapsed(0);
     setActivityType("Running");
@@ -65,7 +83,7 @@ const Activity: React.FC = () => {
 
   const isSaveDisabled = () => {
     return !time || time === 0;
-  }
+  };
 
   const handleSave = async () => {
     const activity = getActivity(activityType) as ActivityType;
@@ -74,11 +92,13 @@ const Activity: React.FC = () => {
       alert("Please fill out your personal info before saving activity.");
       return;
     }
-    console.log(personalInfo);
-    
-  const activityTimeInMin = time !== undefined ? time : 0;
 
-    const estimatedCaloriesBurned = estimatedCalorieBurnCalculator(activity, personalInfo.weightKg, activityTimeInMin);
+    const activityTimeInMin = time !== undefined ? time : 0;
+    const estimatedCaloriesBurned = estimatedCalorieBurnCalculator(
+      activity,
+      personalInfo.weightKg,
+      activityTimeInMin
+    );
 
     await saveActivityLog({
       activity,
@@ -87,12 +107,9 @@ const Activity: React.FC = () => {
     });
     resetForm();
 
-      // Fetch updated activity logs and update state
-
     getActivityLogs().then((activities) => {
-    setActivityLogs(activities);
-  });
-    
+      setActivityLogs(activities);
+    });
   };
 
   return (
@@ -102,7 +119,7 @@ const Activity: React.FC = () => {
           <DisplayActivityLogs activityLogs={activityLogs} />
         )}
 
-        <div className="bg-white shadow-md p-8 rounded-xl border border-gray-200" >
+        <div className="bg-white shadow-md p-8 rounded-xl border border-gray-200">
           <h1 className="text-2xl font-bold mb-6">Add Activity</h1>
           <form className="space-y-6">
             <div>
@@ -135,34 +152,34 @@ const Activity: React.FC = () => {
             </div>
 
             <div>
-  <label htmlFor="timer" className="block font-semibold mb-1">
-    Timer
-  </label>
-  <div className="flex items-center space-x-3">
-    {timer ? (
-      <button
-        type="button"
-        onClick={handleStopTimer}
-        className="flex items-center space-x-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md transition"
-      >
-        <Square size={16} />
-        <span>Stop</span>
-      </button>
-    ) : (
-      <button
-        type="button"
-        onClick={handleStartTimer}
-        className="flex items-center space-x-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition"
-      >
-        <Play size={16} />
-        <span>Start Timer</span>
-      </button>
-    )}
-    <div className="text-sm font-medium text-gray-600">
-  Elapsed Time: {Math.floor(secondsElapsed / 60)} min {secondsElapsed % 60} sec
-</div>
-  </div>
-</div>
+              <label htmlFor="timer" className="block font-semibold mb-1">
+                Timer
+              </label>
+              <div className="flex items-center space-x-3">
+                {timer ? (
+                  <button
+                    type="button"
+                    onClick={handleStopTimer}
+                    className="flex items-center space-x-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md transition"
+                  >
+                    <Square size={16} />
+                    <span>Stop</span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleStartTimer}
+                    className="flex items-center space-x-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition"
+                  >
+                    <Play size={16} />
+                    <span>Start Timer</span>
+                  </button>
+                )}
+                <div className="text-sm font-medium text-gray-600">
+                  Elapsed Time: {Math.floor(secondsElapsed / 60)} min {secondsElapsed % 60} sec
+                </div>
+              </div>
+            </div>
 
             <div className="flex justify-end space-x-3">
               <button
@@ -207,7 +224,10 @@ const DisplayActivityLogs = ({ activityLogs }: { activityLogs: ActivityLog[] }) 
           </thead>
           <tbody>
             {activityLogs.map((log, idx) => (
-              <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-yellow-50"}>
+              <tr
+                key={`${log.date.toISOString()}-${log.activity}-${log.calories}`}
+                className={idx % 2 === 0 ? "bg-white" : "bg-yellow-50"}
+              >
                 <td className="px-4 py-2 border-b border-yellow-200">{log.activity}</td>
                 <td className="px-4 py-2 border-b border-yellow-200 text-red-600">{log.calories}</td>
                 <td className="px-4 py-2 border-b border-yellow-200 text-gray-600">{log.date.toLocaleString()}</td>

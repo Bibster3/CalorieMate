@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Navbar from "./components/Layout/Navbar";
+import Navbar, { SectionKey } from "./components/Layout/Navbar";
 import HeroCarousel from "./components/Layout/HeroCarousel";
 import PersonalInfoForm from "./components/MyInformation";
 import Meals from "./components/Meals";
@@ -16,7 +16,7 @@ export default function App() {
     dashboard: useRef<HTMLElement>(null),
   };
 
-  const scrollTo = (key: keyof typeof refs) =>
+  const scrollTo = (key: SectionKey) =>
     refs[key].current?.scrollIntoView({ behavior: "smooth", inline: "start" });
 
   return (
