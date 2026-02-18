@@ -77,7 +77,7 @@ const PersonalInfoForm: React.FC = () => {
     <Layout>
       <div
         id="personal-info-form"
-        className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-12"
+        className="flex flex-col items-center justify-center bg-white px-4 py-12"
       >
         <div className="mb-4 text-center text-4xl font-bold">
           Ideal Body Weight Calculator
