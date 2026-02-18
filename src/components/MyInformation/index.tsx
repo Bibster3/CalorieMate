@@ -82,6 +82,104 @@ const PersonalInfoForm: React.FC = () => {
         <div className="mb-4 text-center text-4xl font-bold">
           Ideal Body Weight Calculator
         </div>
+
+        <div className="w-full max-w-md space-y-6">
+          <div>
+            <label htmlFor="height" className="block font-semibold mb-1">
+              Height (cm)
+            </label>
+            <input
+              type="number"
+              id="height"
+              value={height || ''}
+              onChange={heightHandler}
+              className="border border-gray-300 rounded-md px-4 py-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="weight" className="block font-semibold mb-1">
+              Weight (kg)
+            </label>
+            <input
+              type="number"
+              id="weight"
+              value={weight || ''}
+              onChange={weightHandler}
+              className="border border-gray-300 rounded-md px-4 py-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="age" className="block font-semibold mb-1">
+              Age
+            </label>
+            <input
+              type="number"
+              id="age"
+              value={age || ''}
+              onChange={ageHandler}
+              className="border border-gray-300 rounded-md px-4 py-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="gender" className="block font-semibold mb-1">
+              Gender
+            </label>
+            <select
+              id="gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value as Gender)}
+              className="border border-gray-300 rounded-md px-4 py-2 w-full"
+            >
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="activityLevel" className="block font-semibold mb-1">
+              Activity Level
+            </label>
+            <select
+              id="activityLevel"
+              value={activityLevel}
+              onChange={activityLevelHandler}
+              className="border border-gray-300 rounded-md px-4 py-2 w-full"
+            >
+              <option value="sedentary">Sedentary</option>
+              <option value="lightExercise">Light Exercise</option>
+              <option value="moderateExercise">Moderate Exercise</option>
+              <option value="heavyExercise">Heavy Exercise</option>
+              <option value="athlete">Athlete</option>
+            </select>
+          </div>
+
+          {dailyCalorieRequirement && (
+            <div className="bg-blue-50 p-4 rounded-md">
+              <p className="text-lg font-semibold">
+                Daily Calorie Requirement: {dailyCalorieRequirement} kcal
+              </p>
+              <p className="text-sm text-gray-600 mt-1">
+                Activity Level: {printActivityLevel(activityLevel)}
+              </p>
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={saveHandler}
+            disabled={!canSave}
+            className={`w-full py-3 rounded-md font-semibold ${
+              canSave
+                ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+            }`}
+          >
+            Calculate & Save
+          </button>
+        </div>
       </div>
     </Layout>
   )
