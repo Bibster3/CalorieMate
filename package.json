@@ -1,6 +1,7 @@
 {
   "homepage": "https://bibster3.github.io/CalorieMate/",
   "name": "caloriemate",
+  "description": "A React + TypeScript web app for tracking meals and activities and comparing net calories against a daily calorie target.",
   "private": true,
   "version": "1.0.0",
   "type": "module",
